@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Scrubberij_2.Models.ShopViewModels.Car>
+
+<h2>Overview Pagina</h2>
+
+<a class="btn btn-default" asp-action="Create">Voeg nieuwe auto toe</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Merk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prijs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kilometerstand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApkVerloopDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bouwjaar)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(test => car.Merk)
+                </td>
+                <td>
+                    @Html.DisplayFor(test => car.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(test => car.Prijs)
+                </td>
+                <td>
+                    @Html.DisplayFor(test => car.Kilometerstand)
+                </td>
+                <td>
+                    @Html.DisplayFor(test => car.ApkVerloopDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(test => car.Bouwjaar)
+                </td>
+                <td>
+                    <a asp-action="update" asp-route-id="@car.Id">edit</a>
+                </td>
+                <td>
+                    <a asp-action="delete" asp-route-id="@car.Id">remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

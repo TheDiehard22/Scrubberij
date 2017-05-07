@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Scrubberij_2.Models;
+using Scrubberij_2.Models.ShopViewModels;
 
 namespace Scrubberij_2.Data
 {
@@ -14,6 +15,9 @@ namespace Scrubberij_2.Data
             : base(options)
         {
         }
+
+        public DbSet<Car> Cars { get; set; } 
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

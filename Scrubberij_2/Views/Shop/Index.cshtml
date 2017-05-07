@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Scrubberij_2.Models.ShopViewModels.Car>
+
+<h2>Alle autos</h2>
+<hr />
+
+
+@foreach (var car in Model)
+{
+    <div class="row">
+        <div class="col-md-2">
+            <img src="#" alt="Alternate Text" class="img-responsive" />
+        </div>
+        <div class="col-md-8">
+            <span>@Html.DisplayFor(modelItem => car.Merk)</span>
+            <span>@Html.DisplayFor(modelItem => car.Type)</span>
+        </div>
+        <div class="col-md-2">
+            <a asp-action="ViewSingleCar" asp-route-id="@car.Id" class="btn btn-primary">Bekijk auto</a>
+        </div>
+    </div>
+}
+
+

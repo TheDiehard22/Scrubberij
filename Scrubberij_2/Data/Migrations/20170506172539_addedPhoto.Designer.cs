@@ -8,9 +8,10 @@ using Scrubberij_2.Data;
 namespace Scrubberij_2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170506172539_addedPhoto")]
+    partial class addedPhoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -205,33 +206,6 @@ namespace Scrubberij_2.Data.Migrations
                     b.ToTable("Cars");
                 });
 
-            modelBuilder.Entity("Scrubberij_2.Models.ShopViewModels.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Achternaam")
-                        .IsRequired();
-
-                    b.Property<int>("CarId");
-
-                    b.Property<DateTime>("Datum");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Tekst");
-
-                    b.Property<string>("Voornaam")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarId");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -266,14 +240,6 @@ namespace Scrubberij_2.Data.Migrations
                     b.HasOne("Scrubberij_2.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Scrubberij_2.Models.ShopViewModels.Comment", b =>
-                {
-                    b.HasOne("Scrubberij_2.Models.ShopViewModels.Car", "Car")
-                        .WithMany("Comments")
-                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

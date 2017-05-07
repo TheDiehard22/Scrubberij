@@ -1,0 +1,70 @@
+﻿@model Scrubberij_2.Models.ShopViewModels.Car
+
+<h2>Update die motherfokin auto Gie</h2>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="Merk" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Merk" class="form-control" />
+                <span asp-validation-for="Merk" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Type" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Bouwjaar" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Bouwjaar" class="form-control" />
+                <span asp-validation-for="Bouwjaar" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Prijs" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Prijs" class="form-control" />
+                <span asp-validation-for="Prijs" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Kilometerstand" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Kilometerstand" class="form-control" />
+                <span asp-validation-for="Kilometerstand" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApkVerloopDatum" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ApkVerloopDatum" class="form-control" />
+                <span asp-validation-for="ApkVerloopDatum" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="BTW" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="BTW" class="checkbox-inline" />
+                <span asp-validation-for="BTW" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExtraInformatie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="ExtraInformatie" class="form-control"></textarea>
+                <span asp-validation-for="ExtraInformatie" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                <input type="submit" name="submit" value="Update die motherfoking auto gieee" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>

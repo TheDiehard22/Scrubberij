@@ -8,9 +8,10 @@ using Scrubberij_2.Data;
 namespace Scrubberij_2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170506175918_Comments")]
+    partial class Comments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -210,20 +211,17 @@ namespace Scrubberij_2.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Achternaam")
-                        .IsRequired();
+                    b.Property<string>("Achternaam");
 
-                    b.Property<int>("CarId");
+                    b.Property<int?>("CarId");
 
                     b.Property<DateTime>("Datum");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
                     b.Property<string>("Tekst");
 
-                    b.Property<string>("Voornaam")
-                        .IsRequired();
+                    b.Property<string>("Voornaam");
 
                     b.HasKey("Id");
 
@@ -272,9 +270,8 @@ namespace Scrubberij_2.Data.Migrations
             modelBuilder.Entity("Scrubberij_2.Models.ShopViewModels.Comment", b =>
                 {
                     b.HasOne("Scrubberij_2.Models.ShopViewModels.Car", "Car")
-                        .WithMany("Comments")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("CarId");
                 });
         }
     }
