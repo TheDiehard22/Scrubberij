@@ -6,7 +6,12 @@
 
 <div class="row">
     <div class="col-md-3">
-        <img src="#" alt="Alternate Text" style="height: 200px;" class="img-responsive" />
+        @foreach (var image in Model.Car.Fotos)
+        {
+            <img src="@image.URL" alt="Alternate Text" style="height: 200px;" class="img-responsive" />
+            <span>@Html.DisplayFor(model => image.URL)</span>
+        }
+        
     </div>
     <div class="col-md-9">
         <div class="row">
@@ -62,6 +67,7 @@
                 <span>@Html.DisplayFor(i => comment.Voornaam)</span>
                 <span>@Html.DisplayFor(i => comment.Achternaam)</span>
                 <span>@Html.DisplayFor(i => comment.Email)</span>
+                <span>@Html.DisplayFor(i => comment.Datum)</span>
             </div>
         </div>
     }

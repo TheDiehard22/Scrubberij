@@ -18,6 +18,7 @@ namespace Scrubberij_2.Data
 
         public DbSet<Car> Cars { get; set; } 
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<CarImage> Fotos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

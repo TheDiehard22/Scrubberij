@@ -23,7 +23,7 @@ namespace Scrubberij_2.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var allCars = _context.Cars.ToList();
+            var allCars = _context.Cars.Include(i => i.Fotos);
 
             return View(allCars);
         }

@@ -44,13 +44,41 @@ namespace Scrubberij_2.Controllers
 
         [HttpPost]
         public IActionResult Create(int id,
-            [Bind("Merk", "Type", "Bouwjaar", "Prijs", "Kilometerstand", "Brandstof", "Transmissie", "ApkVerloopDatum", "BTW", "ExtraInformatie")] Car car)
+            [Bind("Merk", "Type", "Bouwjaar", "Prijs", "Kilometerstand", "Brandstof", "Transmissie", "ApkVerloopDatum", "Fotos", "BTW", "ExtraInformatie")] Car car,
+            List<IFormFile> files)
         {
+            var filePath = Path.Combine(_environment.WebRootPath, "uploads");
+            var allPhotos = new List<CarImage>();
+
             try
             {
+                foreach (var file in files)
+                {
+                    if (file.Length > 0)
+                    {
+                        using (var stream = new FileStream(Path.Combine(filePath, file.FileName), FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+
+                            var image = new CarImage
+                            {
+                                URL = Path.Combine(filePath, file.FileName),
+                                IsFirst = true
+                            };
+
+                            //Add Photos to CarImage collection
+                            allPhotos.Add(image);
+                        }
+
+                    }
+                }
+
+                //Add all the fotos the fotos collection
+                car.Fotos = allPhotos;
+
                 if (ModelState.IsValid)
                 {
-                    _context.Add(car);
+                    _context.Cars.Add(car);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -76,7 +104,7 @@ namespace Scrubberij_2.Controllers
         }
 
         [HttpPost, ActionName("Update")]
-        public async Task <IActionResult> UpdateCar(int? id)
+        public async Task<IActionResult> UpdateCar(int? id)
         {
             if (id == null)
             {
@@ -133,7 +161,8 @@ namespace Scrubberij_2.Controllers
         {
             long size = files.Sum(f => f.Length);
 
-            var filePath = Path.Combine(_environment.WebRootPath, "uploads");  
+            var filePath = Path.Combine(_environment.WebRootPath, "uploads");
+
 
             foreach (var formFile in files)
             {

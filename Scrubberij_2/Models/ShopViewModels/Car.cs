@@ -36,7 +36,7 @@ namespace Scrubberij_2.Models.ShopViewModels
 
         public bool BTW { get; set; }
 
-        public string Foto { get; set; }
+        public List<CarImage> Fotos { get; set; }
 
         [DisplayName("Extra informatie")]
         [DataType(DataType.MultilineText)]
