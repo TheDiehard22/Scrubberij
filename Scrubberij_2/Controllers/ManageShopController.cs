@@ -9,6 +9,7 @@ using Scrubberij_2.Models.ShopViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,10 +19,12 @@ namespace Scrubberij_2.Controllers
     public class ManageShopController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment _environment;
 
-        public ManageShopController(ApplicationDbContext context)
+        public ManageShopController(ApplicationDbContext context, IHostingEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         // GET: /ManageShop/
@@ -130,13 +133,13 @@ namespace Scrubberij_2.Controllers
         {
             long size = files.Sum(f => f.Length);
 
-            var filePath = Path.GetTempFileName();
+            var filePath = Path.Combine(_environment.WebRootPath, "uploads");  
 
             foreach (var formFile in files)
             {
                 if (formFile.Length > 0)
                 {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    using (var stream = new FileStream(Path.Combine(filePath, formFile.FileName), FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
                     }

@@ -30,7 +30,7 @@ namespace Scrubberij_2.Controllers
 
         public IActionResult ViewSingleCar(int? id)
         {
-            ViewBag.Title = "fuck off";
+            ViewBag.Title = "auto";
 
             if (!CarExists(id))
             {
@@ -42,15 +42,17 @@ namespace Scrubberij_2.Controllers
             return View("View", vm);
         }
 
-        [HttpPost, ActionName("CreateComment")]
-        public IActionResult ViewSingleCar(
+        [HttpPost]
+        public IActionResult ViewSingleCar(int? id,
             [Bind("Id", "CarId", "Voornaam", "Achternaam", "Email", "Tekst", "Datum")] Comment comment)
         {
+            comment.CarId = id.Value;
+
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Add(comment);
+                    _context.Comments.Add(comment);
                     _context.SaveChanges();
                 }
             }
